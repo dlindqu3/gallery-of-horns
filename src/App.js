@@ -3,7 +3,7 @@ import './App.css';
 import Header from './header.js'; 
 import Main from './main.js'; 
 import Footer from './footer.js'; 
-import HornedBeast from './HornedBeast.js'; 
+
 
 class App extends React.Component{
   render(){
