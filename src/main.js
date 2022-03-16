@@ -1,7 +1,7 @@
 import React from 'react'; 
-import HornedBeast from './HornedBeast.js';
-import data from './data.json';  
+import HornedBeast from './HornedBeast.js'; 
 import './main.css'; 
+import data from './data.json'; 
 
 class Main extends React.Component{
   render(){
