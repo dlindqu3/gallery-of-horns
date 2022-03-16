@@ -1,6 +1,7 @@
 import React from 'react'; 
 import './HornedBeast.css'; 
-// import Container from 'react-bootstrap/Container'; 
+import Card from 'react-bootstrap/Card'; 
+import Button from 'react-bootstrap/Button';
 
 class HornedBeast extends React.Component{
   constructor(props){
@@ -29,14 +30,23 @@ class HornedBeast extends React.Component{
     return (
           <>
           <article>
-            <h2>{this.props.title}</h2>
-            <img src={this.props.image_url} 
-            alt="" 
-            title={this.props.title}
-            onClick={this.handleClicks}
-            ></img>
-            <p>{this.props.description}</p>
-            <p>❤️{this.state.clicks}</p>
+          <Card className="h-100"> 
+            <Card.Img 
+              variant="top" 
+              src={this.props.image_url}
+              alt={this.props.alt}
+              title={this.props.title} 
+              />
+            <Card.Body>
+              <Card.Title>{this.props.title}❤️{this.state.clicks}</Card.Title>
+              <Card.Text>
+              {this.props.description}
+              </Card.Text>
+                <Button 
+                variant="primary"
+                onClick={this.handleClicks}>Favorite</Button>
+            </Card.Body>
+          </Card>
           </article>
           </>
     )
