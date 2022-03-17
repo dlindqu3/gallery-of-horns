@@ -1,6 +1,6 @@
 import React from 'react'; 
 import HornedBeast from './HornedBeast.js'; 
-import selectedBeast from './selectedBeast'; 
+// import selectedBeast from './selectedBeast'; 
 import './main.css'; 
 
 
@@ -9,18 +9,18 @@ class Main extends React.Component{
 
       console.log(this.props); 
 
-    let allBeasts = [];
-    this.props.data.map((beast, index) => {
-      allBeasts.push(
+      // let allBeasts=[];
+
+      let allBeasts = this.props.data.map((beast, index) => 
           <HornedBeast
-          image_url={beast.image_url}
-          title={beast.title}
-          description={beast.description}
-          key={index}
-          openModal={this.props.openModal}
-          />
-      )
-    })
+            image_url={beast.image_url}
+            title={beast.title}
+            description={beast.description}
+            key={index}
+            openModal={this.props.openModal}
+          /> 
+    
+    )
   
     return (
     
