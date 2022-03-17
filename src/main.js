@@ -1,17 +1,23 @@
 import React from 'react'; 
 import HornedBeast from './HornedBeast.js'; 
+import selectedBeast from './selectedBeast'; 
 import './main.css'; 
-import data from './data.json'; 
+
 
 class Main extends React.Component{
   render(){
+
+      console.log(this.props); 
+
     let allBeasts = [];
-    data.forEach((beast, index) => {
+    this.props.data.map((beast, index) => {
       allBeasts.push(
           <HornedBeast
           image_url={beast.image_url}
-          title={beast.description}
+          title={beast.title}
           description={beast.description}
+          key={index}
+          openModal={this.props.openModal}
           />
       )
     })

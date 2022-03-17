@@ -24,9 +24,13 @@ class HornedBeast extends React.Component{
      })
   }
 
+  handleOpenModal = () => {
+    this.props.openModal(this.props.title, this.props.image_url);
+  }
+
   render(){
-    console.log(this.props); 
-    console.log(this.state); 
+    // console.log(this.props); 
+    // console.log(this.state); 
     return (
           <>
           <article>
@@ -34,8 +38,8 @@ class HornedBeast extends React.Component{
             <Card.Img 
               variant="top" 
               src={this.props.image_url}
-              alt={this.props.alt}
-              title={this.props.title} 
+              onClick={this.handleOpenModal}
+            
               />
             <Card.Body>
               <Card.Title>{this.props.title}❤️{this.state.clicks}</Card.Title>
