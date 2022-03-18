@@ -7,7 +7,7 @@ import './main.css';
 class Main extends React.Component{
   render(){
 
-      console.log(this.props); 
+      // console.log(this.props); 
 
       // let allBeasts=[];
 
@@ -27,6 +27,14 @@ class Main extends React.Component{
       <main>
         {allBeasts}
       </main>
+
+      /* {this.props.data.map((beast, index) => 
+          <HornedBeast
+            image_url={beast.image_url}
+            title={beast.title}
+            description={beast.description}
+            key={index}
+            openModal={this.props.openModal} */
 
       // <HornedBeast
       //     title="Rhino Family"
