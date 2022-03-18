@@ -11,7 +11,21 @@ class Main extends React.Component{
 
       // let allBeasts=[];
 
-      let allBeasts = this.props.data.map((beast, index) => 
+    //   let allBeasts = this.props.data.map((beast, index) => 
+    //       <HornedBeast
+    //         image_url={beast.image_url}
+    //         title={beast.title}
+    //         description={beast.description}
+    //         key={index}
+    //         openModal={this.props.openModal}
+    //       /> 
+    
+    // )
+  
+    return (
+    
+      <main>
+        {this.props.data.map((beast, index) => 
           <HornedBeast
             image_url={beast.image_url}
             title={beast.title}
@@ -20,12 +34,7 @@ class Main extends React.Component{
             openModal={this.props.openModal}
           /> 
     
-    )
-  
-    return (
-    
-      <main>
-        {allBeasts}
+    )}
       </main>
 
       // <HornedBeast

@@ -4,17 +4,58 @@ import Header from './header.js';
 import Main from './main.js'; 
 import Footer from './footer.js'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Form, Button } from 'react-bootstrap';
 import data from './data.json';
 import SelectedBeast from './selectedBeast';
+
+
+const numHorns = [1, 2, 3, 100]; 
+
+console.log(data); 
+
+let twoHorns = data.filter(obj => obj["horns"] === 2 );
+
+
+console.log(twoHorns); 
+
 
 class App extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
       title: '',
-      showModal: false
+      showModal: false,
+      data: data
     };
   }
+
+filterHorns = (e) => {
+
+  let num = e.target.value;
+  console.log(num); 
+ 
+   let resultData = null; 
+ 
+   if (num === 'all'){
+     resultData = data; 
+   } else if (num === '1'){
+     resultData = data.filter(obj => obj["horns"] === parseInt(num));
+   } else if (num === '2'){
+     resultData = data.filter(obj => obj["horns"] === parseInt(num));
+   } else if (num === '3'){
+     resultData = data.filter(obj => obj["horns"] === parseInt(num));
+   } else if (num === '100'){
+     resultData = data.filter(obj => obj["horns"] === parseInt(num));
+   } else {
+     console.log('nums wrong'); 
+   }
+   console.log(resultData); 
+   this.setState({data: resultData}); 
+ }
+
+
+
+
 
   hideModal = () => {
     this.setState({
@@ -22,6 +63,7 @@ class App extends React.Component{
     });
   };
 
+  
   openModal = (title, image_url, description) => {
     this.setState({
       showModal: true,
@@ -31,10 +73,69 @@ class App extends React.Component{
     });
   };
 
+  handleHorns = (event) => {
+    this.setState({
+      numHorns: event.target.value
+    });
+  };
+  handleSelect = (e) => {
+    console.log(e.target.value);
+    let selected = e.target.value;
+
+  // 1, 2, 3, 100
+    if (selected === '1') {
+      console.log('selected 1');
+      let newHorns = numHorns.filter(num => num === 1);
+      this.setState({ numHorns: newHorns });
+      console.log(newHorns);
+    } else if (selected === '2') {
+      console.log('selected 2');
+      let newHorns = numHorns.filter(num => num === 2);
+      this.setState({ numHorns: newHorns });
+    } else if (selected === '3') {
+      console.log('selected 3');
+      let newHorns = numHorns.filter(num => num === 3);
+      this.setState({ numHorns: newHorns });
+    } else if (selected === '100'){
+      console.log('selected 100');
+      let newHorns = numHorns.filter(num => num === 100);
+      this.setState({ numHorns: newHorns });
+    } else if (selected === 'all'){
+      console.log('selected all'); 
+      this.setState({numHorns: numHorns})
+    }
+  }
+
+  // handleSubmit = (event) => {
+  //   event.preventDefault(); 
+  //   console.log( `number of horns for filter submitted: ${this.state.numHorns}`);
+  //   // data={this.state.numHorns}; 
+  //   // console.log(data); 
+    
+  //   console.log(event); 
+  //   this.setState({data: result}); 
+  // }
+
   render(){
     return (
       <>
         <Header/>
+
+        <Form onSubmit={this.handleSubmit}>
+
+              <Form.Group >
+                <Form.Select name="selected" onChange={this.filterHorns}>
+                  <option defaultValue> -- select an option -- </option>
+                  <option value="all">all</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="100">100</option>
+                </Form.Select>
+              </Form.Group>
+
+              {/* <Button type="submit">submit</Button> */}
+            </Form>
 
         <Main
         data={data}
