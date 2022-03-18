@@ -13,7 +13,7 @@ let numHorns = [1, 2, 3, 100];
 
 // console.log(data); 
 
-let twoHorns = data.filter(obj => obj["horns"] === 2 );
+// let twoHorns = data.filter(obj => obj["horns"] === 2 );
 
 // console.log('data with 2 horns: ', twoHorns); 
 
@@ -72,15 +72,22 @@ class App extends React.Component{
       this.setState({ numHorns: newHorns });
     } else if (selected === 'all'){
       console.log('selected all'); 
-      this.setState({numHorns: numHorns})
+      this.setState({numHorns: [1, 2, 3, 100]})
     }
   }
 
   handleSubmit = (event) => {
     event.preventDefault(); 
     console.log( `number of horns for filter submitted: ${this.state.numHorns}`);
-    console.log('this.state.numHorns at time of submit: ', this.state.numHorns); 
-    let newData = data.filter(obj => obj["horns"] === this.state.numHorns[0]);
+    console.log('this.state.numHorns at time of submit: ', this.state.numHorns);
+    
+    let newData; 
+
+    if(this.state.numHorns[1]){
+      newData = data; 
+    } else {
+      newData = data.filter(obj => obj["horns"] === this.state.numHorns[0]);
+    }
     console.log('filtered data, now called newData: ', newData); 
     this.setState({data: newData }); 
     console.log('updated data state after submit: ', data); 
@@ -108,7 +115,7 @@ class App extends React.Component{
             </Form>
 
         <Main
-        data={data}
+        data={this.state.data}
         openModal={this.openModal}    
         /> 
 
