@@ -93,3 +93,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 - number and name of feature: 1 - display a modal 
 - estimate of time to complete: 3 hours
 - start time/finish time: I worked on this over two days, for a total of 4.5 hours 
+
+### Features lab-04 
+- number and name of feature: 1 - filter by number of horns 
+- estimated time to complete: 3 hours 
+- start/finish time: I worked on this for two days, for a total of 4.5 hours
