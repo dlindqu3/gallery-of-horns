@@ -7,25 +7,11 @@ import './main.css';
 class Main extends React.Component{
   render(){
 
-      console.log(this.props); 
+      // console.log(this.props); 
 
       // let allBeasts=[];
 
-    //   let allBeasts = this.props.data.map((beast, index) => 
-    //       <HornedBeast
-    //         image_url={beast.image_url}
-    //         title={beast.title}
-    //         description={beast.description}
-    //         key={index}
-    //         openModal={this.props.openModal}
-    //       /> 
-    
-    // )
-  
-    return (
-    
-      <main>
-        {this.props.data.map((beast, index) => 
+      let allBeasts = this.props.data.map((beast, index) => 
           <HornedBeast
             image_url={beast.image_url}
             title={beast.title}
@@ -34,8 +20,21 @@ class Main extends React.Component{
             openModal={this.props.openModal}
           /> 
     
-    )}
+    )
+  
+    return (
+    
+      <main>
+        {allBeasts}
       </main>
+
+      /* {this.props.data.map((beast, index) => 
+          <HornedBeast
+            image_url={beast.image_url}
+            title={beast.title}
+            description={beast.description}
+            key={index}
+            openModal={this.props.openModal} */
 
       // <HornedBeast
       //     title="Rhino Family"

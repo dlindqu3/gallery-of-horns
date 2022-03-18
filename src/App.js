@@ -9,15 +9,13 @@ import data from './data.json';
 import SelectedBeast from './selectedBeast';
 
 
-const numHorns = [1, 2, 3, 100]; 
+let numHorns = [1, 2, 3, 100]; 
 
-console.log(data); 
+// console.log(data); 
 
 let twoHorns = data.filter(obj => obj["horns"] === 2 );
 
-
-console.log(twoHorns); 
-
+// console.log('data with 2 horns: ', twoHorns); 
 
 class App extends React.Component{
   constructor(props) {
@@ -25,44 +23,16 @@ class App extends React.Component{
     this.state = {
       title: '',
       showModal: false,
+      numHorns: numHorns,
       data: data
     };
   }
-
-filterHorns = (e) => {
-
-  let num = e.target.value;
-  console.log(num); 
- 
-   let resultData = null; 
- 
-   if (num === 'all'){
-     resultData = data; 
-   } else if (num === '1'){
-     resultData = data.filter(obj => obj["horns"] === parseInt(num));
-   } else if (num === '2'){
-     resultData = data.filter(obj => obj["horns"] === parseInt(num));
-   } else if (num === '3'){
-     resultData = data.filter(obj => obj["horns"] === parseInt(num));
-   } else if (num === '100'){
-     resultData = data.filter(obj => obj["horns"] === parseInt(num));
-   } else {
-     console.log('nums wrong'); 
-   }
-   console.log(resultData); 
-   this.setState({data: resultData}); 
- }
-
-
-
-
 
   hideModal = () => {
     this.setState({
       showModal: false,
     });
   };
-
   
   openModal = (title, image_url, description) => {
     this.setState({
@@ -73,11 +43,12 @@ filterHorns = (e) => {
     });
   };
 
-  handleHorns = (event) => {
-    this.setState({
-      numHorns: event.target.value
-    });
-  };
+  // handleHorns = (event) => {
+  //   this.setState({
+  //     numHorns: event.target.value
+  //   });
+  // };
+
   handleSelect = (e) => {
     console.log(e.target.value);
     let selected = e.target.value;
@@ -87,7 +58,6 @@ filterHorns = (e) => {
       console.log('selected 1');
       let newHorns = numHorns.filter(num => num === 1);
       this.setState({ numHorns: newHorns });
-      console.log(newHorns);
     } else if (selected === '2') {
       console.log('selected 2');
       let newHorns = numHorns.filter(num => num === 2);
@@ -106,15 +76,15 @@ filterHorns = (e) => {
     }
   }
 
-  // handleSubmit = (event) => {
-  //   event.preventDefault(); 
-  //   console.log( `number of horns for filter submitted: ${this.state.numHorns}`);
-  //   // data={this.state.numHorns}; 
-  //   // console.log(data); 
-    
-  //   console.log(event); 
-  //   this.setState({data: result}); 
-  // }
+  handleSubmit = (event) => {
+    event.preventDefault(); 
+    console.log( `number of horns for filter submitted: ${this.state.numHorns}`);
+    console.log('this.state.numHorns at time of submit: ', this.state.numHorns); 
+    let newData = data.filter(obj => obj["horns"] === this.state.numHorns[0]);
+    console.log('filtered data, now called newData: ', newData); 
+    this.setState({data: newData }); 
+    console.log('updated data state after submit: ', data); 
+  }
 
   render(){
     return (
@@ -124,7 +94,7 @@ filterHorns = (e) => {
         <Form onSubmit={this.handleSubmit}>
 
               <Form.Group >
-                <Form.Select name="selected" onChange={this.filterHorns}>
+                <Form.Select name="selected" onChange={this.handleSelect}>
                   <option defaultValue> -- select an option -- </option>
                   <option value="all">all</option>
                   <option value="1">1</option>
@@ -134,7 +104,7 @@ filterHorns = (e) => {
                 </Form.Select>
               </Form.Group>
 
-              {/* <Button type="submit">submit</Button> */}
+              <Button type="submit">submit</Button>
             </Form>
 
         <Main
@@ -156,7 +126,5 @@ filterHorns = (e) => {
     );
   }
 }
-
-
 
 export default App;
